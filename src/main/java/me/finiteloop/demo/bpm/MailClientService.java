@@ -69,7 +69,7 @@ public class MailClientService {
 
 			HttpPost httpPost = new HttpPost(
 					properties.getProperty("mail.server.url"));
-			List<NameValuePair> map = new ArrayList<>();
+			List<NameValuePair> map = new ArrayList<NameValuePair>();
 			map.add(new BasicNameValuePair("from",
 					"Excited User <mailgun@sandboxd19e1d3ae87f4f89a24ef653c1f034aa.mailgun.org>"));
 			map.add(new BasicNameValuePair("to", sendTo));
