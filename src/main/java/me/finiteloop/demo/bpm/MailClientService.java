@@ -38,7 +38,7 @@ public class MailClientService {
 	Properties properties = null;
 
 	public MailClientService() throws IOException{
-		loadConfigurationData();
+//		loadConfigurationData();
 	}
 	
 	private void loadConfigurationData() throws IOException {
@@ -51,8 +51,11 @@ public class MailClientService {
 	private HttpClient getHttpClient(){
 		CredentialsProvider credentialProvider = new BasicCredentialsProvider();
 		UsernamePasswordCredentials usernamePassword = new UsernamePasswordCredentials(
-					this.properties.getProperty("mail.server.username"),
-					this.properties.getProperty("mail.server.passwd")
+				//TODO: remove the hardcoding
+				"api",
+				"key-896ca146389f7ca7551bf2fec697fe51"
+//					this.properties.getProperty("mail.server.username"),
+//					this.properties.getProperty("mail.server.passwd")
 				);
 		credentialProvider.setCredentials(AuthScope.ANY, usernamePassword);
 		
@@ -70,10 +73,13 @@ public class MailClientService {
 			HttpClient client = getHttpClient();
 
 			HttpPost httpPost = new HttpPost(
-					properties.getProperty("mail.server.url"));
+//TODO: remove the hardcoding					
+//					properties.getProperty("mail.server.url")
+					"https://api.mailgun.net/v3/sandboxd19e1d3ae87f4f89a24ef653c1f034aa.mailgun.org/messages"
+					);
 			List<NameValuePair> map = new ArrayList<NameValuePair>();
 			map.add(new BasicNameValuePair("from",
-					"Excited User <mailgun@sandboxd19e1d3ae87f4f89a24ef653c1f034aa.mailgun.org>"));
+					"Automated BPM User <mailgun@sandboxd19e1d3ae87f4f89a24ef653c1f034aa.mailgun.org>"));
 			map.add(new BasicNameValuePair("to", sendTo));
 			map.add(new BasicNameValuePair("subject", emailSubject));
 			map.add(new BasicNameValuePair("text", emailBody));
