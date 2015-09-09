@@ -42,9 +42,9 @@ public class MailClientService {
 	}
 	
 	private void loadConfigurationData() throws IOException {
-//		properties.load(this.getClass().getClassLoader().
-//				getResourceAsStream("/configuration.properties"));
-		properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("/WEB-INF/classes/configuration.properties"));
+		properties.load(MailClientService.class.getClassLoader()
+						.getResource("configuration.properties")
+						.openStream());
 		return;
 	}
 
