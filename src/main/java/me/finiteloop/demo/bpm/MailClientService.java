@@ -3,6 +3,7 @@
  */
 package me.finiteloop.demo.bpm;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +42,9 @@ public class MailClientService {
 	}
 	
 	private void loadConfigurationData() throws IOException {
-		properties.load(this.getClass().getClassLoader().
-				getResourceAsStream("/configuration.properties"));
+//		properties.load(this.getClass().getClassLoader().
+//				getResourceAsStream("/configuration.properties"));
+		properties.load(new FileInputStream("configuration.properties"));
 		return;
 	}
 
